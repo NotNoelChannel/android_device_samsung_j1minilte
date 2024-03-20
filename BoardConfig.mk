@@ -32,6 +32,8 @@ BOARD_VENDOR := samsung
 
 TARGET_KERNEL_SOURCE := kernel/samsung/j1minilte
 TARGET_KERNEL_CONFIG := j1minilte_defconfig
+KERNEL_TOOLCHAIN := /opt/toolchains/arm-eabi-4.8/bin
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-eabi-
 NEED_KERNEL_MODULE_ROOT := true
 
 SPRD_MODULES:
