@@ -74,24 +74,19 @@ void vendor_load_properties()
     FILE* file = fopen(simslot_count_path, "r");
     if (file != NULL) {
         simslot_count[0] = fgetc(file);
-        property_set("ro.multisim.simslotcount", simslot_count);
         property_set("ro.msms.phone_count", simslot_count);
         property_set("ro.modem.w.count", simslot_count);
-        property_set("persist.msms.phone_count", simslot_count);
-        if (simslot_count[0] == '2')
-            property_set("persist.radio.multisim.config", "dsds");
-
         fclose(file);
     }
 
     property_get("ro.bootloader", bootloader);
-    if (strstr(bootloader, "J320FN")) {
+    if (strstr(bootloader, "J105F")) {
         /* SM-J320FN */
-        property_set("ro.product.model", "SM-J320FN");
-        property_set("ro.product.device", "j3xnlte");
+        property_set("ro.product.model", "SM-J105F");
+        property_set("ro.product.device", "j1minilte");
     } else {
-        property_set("ro.product.model", "SM-J320F");
-        property_set("ro.product.device", "j3xlte");
+        property_set("ro.product.model", "SM-J105Y");
+        property_set("ro.product.device", "j1minilte");
     }
 
     property_get("ro.product.device", device);

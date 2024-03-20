@@ -3,7 +3,7 @@
 set -e
 
 VENDOR=samsung
-DEVICE=j3xnlte
+DEVICE=j1minilte
 
 cd ../../../..
 

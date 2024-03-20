@@ -1,8 +1,7 @@
-
-TARGET_OTA_ASSERT_DEVICE := j3xnlte,j3xnltexx,j2xlte,j2xltedd,j3xlte
+TARGET_OTA_ASSERT_DEVICE := j1minilte,j1miniltexx,j1minilteobxx
 
 # inherit from the proprietary version
--include vendor/samsung/j3xnlte/BoardConfigVendor.mk
+-include vendor/samsung/j1minilte/BoardConfigVendor.mk
 
 COMMON_GLOBAL_CFLAGS += -DSPRD_HARDWARE
 
@@ -16,10 +15,9 @@ TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_VARIANT := cortex-a7
 TARGET_CPU_SMP := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
-WITH_SU := true
 
 # Remove "system.new.dat" format.System files are now in "system" folder of the ROM Package.(Easy for development purpose)
-BLOCK_BASED_OTA :=false
+BLOCK_BASED_OTA := false
 
 BOARD_NEEDS_MEMORYHEAPION_SPRD := true
 BOARD_USE_EMMC := true
@@ -31,16 +29,9 @@ TARGET_BOOTLOADER_BOARD_NAME := SC9830I
 BOARD_VENDOR := samsung
 
 # Include path
-#TARGET_SPECIFIC_HEADER_PATH := device/samsung/j3xnlte/include
 
-#TARGET_PREBUILT_KERNEL := device/samsung/j3xnlte/kernel
-#TARGET_PREBUILT_DTB := device/samsung/j3xnlte/dt.img
-
-TARGET_KERNEL_SOURCE := kernel/samsung/sharkls
-#TARGET_KERNEL_CONFIG := j3xnlte_defconfig
-TARGET_KERNEL_CONFIG := j3xnlte_permissive_defconfig
-TARGET_KERNEL_HAVE_EXFAT := true
-TARGET_KERNEL_HAVE_NTFS := true
+TARGET_KERNEL_SOURCE := kernel/samsung/j1minilte
+TARGET_KERNEL_CONFIG := j1minilte_defconfig
 NEED_KERNEL_MODULE_ROOT := true
 
 SPRD_MODULES:
@@ -64,7 +55,7 @@ BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --kernel_offset 0x00008000 --ramdisk_offset 0x01000000 --tags_offset 0x00000100 --cmdline 'console=ttyS1,115200n8'
 
-BOARD_CUSTOM_BOOTIMG_MK := device/samsung/j3xnlte/bootimg.mk
+BOARD_CUSTOM_BOOTIMG_MK := device/samsung/j1minilte/bootimg.mk
 BOARD_KERNEL_SEPARATED_DT := true
 
 TARGET_CUSTOM_DTBTOOL := dtbToolSprd
@@ -89,13 +80,13 @@ BOARD_HARDWARE_CLASS := hardware/samsung/cmhw/
 
 # Init
 TARGET_PROVIDES_INIT_RC := true
-TARGET_INIT_VENDOR_LIB := libinit_j3lte
-TARGET_RECOVERY_DEVICE_MODULES := libinit_j3lte
+TARGET_INIT_VENDOR_LIB := libinit_j1minilte
+TARGET_RECOVERY_DEVICE_MODULES := libinit_j1minilte
 TARGET_UNIFIED_DEVICE := true
 
 # Boot animation
-TARGET_SCREEN_HEIGHT := 1280
-TARGET_SCREEN_WIDTH := 720
+TARGET_SCREEN_HEIGHT := 800
+TARGET_SCREEN_WIDTH := 480
 TARGET_BOOTANIMATION_PRELOAD := true
 TARGET_BOOTANIMATION_TEXTURE_CACHE := true
 
@@ -105,7 +96,7 @@ BOARD_PROVIDES_LIBRIL := true
 BOARD_PROVIDES_RILD := true
 
 USE_BOOT_AT_DIAG := true
-BOARD_RIL_CLASS := ../../../device/samsung/j3xnlte/ril/
+BOARD_RIL_CLASS := device/samsung/j1minilte/ril/
 
 # lights
 TARGET_PROVIDES_LIBLIGHT := true
@@ -124,15 +115,8 @@ USE_RGB_VIDEO_LAYER := true
 # Storage
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/20200000.usb/gadget/lun%d/file"
 
-# Enable HW based full disk encryption
-#TARGET_HW_DISK_ENCRYPTION := true
-
 # Sensors
 TARGET_NO_SENSOR_PERMISSION_CHECK := true
-
-# NFC
-BOARD_NFC_CHIPSET := pn548
-TARGET_USES_NQ_NFC := true
 
 # WEBGL
 ENABLE_WEBGL := true
@@ -232,8 +216,8 @@ BOARD_HAVE_BLUETOOTH := true
 SPRD_WCNBT_CHISET := marlin
 BOARD_SPRD_WCNBT_MARLIN := true
 
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/j3xnlte/configs/bluetooth
-BOARD_BLUEDROID_VENDOR_CONF := device/samsung/j3xnlte/configs/bluetooth/libbt_vndcfg.txt
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/j1minilte/configs/bluetooth
+BOARD_BLUEDROID_VENDOR_CONF := device/samsung/j1minilte/configs/bluetooth/libbt_vndcfg.txt
 
 # WIFI configs
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211

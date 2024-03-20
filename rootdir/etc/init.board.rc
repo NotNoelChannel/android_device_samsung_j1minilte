@@ -1,3 +1,5 @@
+
+# import /init.storage.rc // for samsung
 import init.wifi.rc
 
 on early-boot
@@ -38,19 +40,17 @@ on early-boot
     chown system root /proc/cptl/runnv
 
 on boot
-#lun
-    write /sys/class/android_usb/android0/f_mass_storage/board_support_luns 1
 
 # SSWAP
     write /proc/sys/vm/swappiness 130
 
 # bluetooth
+    # UART0 device
     chmod 660 /dev/ttyS0
     chmod 660 /proc/bluetooth/sleep/proto
     chmod 660 /sys/class/rfkill/rfkill0/state
     chmod 660 /sys/class/rfkill/rfkill0/type
     chmod 660 /proc/bluetooth/sleep/btwrite
-    chmod 660 /sys/devices/70000000.uart/uart_conf
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
     chown bluetooth net_bt_stack /dev/ttyS0
@@ -58,13 +58,7 @@ on boot
 #for Bluesleep
     chown bluetooth system /proc/bluetooth/sleep/proto
     chown bluetooth system /proc/bluetooth/sleep/btwrite
-    chown bluetooth system /sys/devices/70000000.uart/uart_conf
-    chown bluetooth shell /productinfo/connectivity_configure.ini
-    chown bluetooth bluetooth /system/etc/connectivity_configure.ini
 
-#for wifi
-    chmod 666 /productinfo/connectivity_configure.ini
-    chmod 666 /system/etc/connectivity_configure.ini
 
 # Broadcom GPS
     chown root system /dev/ttyS3
@@ -84,17 +78,11 @@ on boot
     rm /data/smd_started
     rm /data/sv_cno.info
 
-# OTG_TEST
-    chown system radio /sys/class/host_notify/usb_otg/booster
-    chmod 0660 /sys/class/host_notify/usb_otg/booster
-
-#touchkey
-    chown system system /sys/class/sec/sec_touchkey/touchkey_back
-    chown system system /sys/class/sec/sec_touchkey/touchkey_recent
-    chown system system /sys/class/sec/sec_touchkey/touchkey_threshold
-    chown system system /sys/class/sec/sec_touchkey/touchkey_raw_recent
-    chown system system /sys/class/sec/sec_touchkey/touchkey_raw_back
-    chown system system /sys/class/sec/sec_touchkey/touchkey_firm_update
+#LCD
+    chown system system /sys/class/backlight/panel/brightness
+    chmod 0664 /sys/class/backlight/panel/brightness
+    chown system system /sys/class/backlight/panel/auto_brightness
+    chmod 0664 /sys/class/backlight/panel/auto_brightness
 
 # GPS
 service gpsd /system/bin/gpsd -c /system/etc/gps.xml
@@ -110,7 +98,6 @@ service temp_test /data/simpletest
 
 on property:persist.sys.temp.test=1
 	start temp_test
-
 
 service iprenew_bt-pan /system/bin/dhcpcd -n
     disabled
@@ -152,14 +139,27 @@ on property:lmk.autocalc=false
 chown system system /sys/module/smsg/parameters/assert_trigger
 chown system system /sys/power/avs_log
 
+
+
+service dhcpcd_bnep0 /system/bin/dhcpcd -ABKL
+    class main
+    disabled
+    oneshot
+service iprenew_bnep0 /system/bin/dhcpcd -n
+    class main
+    disabled
+    oneshot
+service dhcpcd_bt-pan /system/bin/dhcpcd -BKLG
+   disabled
+   oneshot
+service iprenew_bt-pan /system/bin/dhcpcd -n
+    disabled
+    oneshot
+
 # SSWAP
 service swapon /sbin/sswap -s
     class core
     user root
     group root
+    seclabel u:r:sswap:s0
     oneshot
-
-service healthd-charger /sbin/healthd -c
-    class charger
-    critical
-    seclabel u:r:healthd:s0

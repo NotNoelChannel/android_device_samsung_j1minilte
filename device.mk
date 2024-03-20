@@ -1,5 +1,5 @@
 
-LOCAL_PATH := device/samsung/j3xnlte
+LOCAL_PATH := device/samsung/j1minilte
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
@@ -7,10 +7,10 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 $(call inherit-product, device/common/gps/gps_eu_supl.mk)
 
 # Get non-open-source specific aspects
-$(call inherit-product-if-exists, vendor/samsung/j3xnlte/j3xnlte-vendor.mk)
+$(call inherit-product-if-exists, vendor/samsung/j1minilte/j1minilte-vendor.mk)
 
 # Overlays
-PRODUCT_PACKAGE_OVERLAYS += device/samsung/j3xnlte/overlay
+PRODUCT_PACKAGE_OVERLAYS += device/samsung/j1minilte/overlay
 
 # Sprd proprietaries drm libomx
 $(call inherit-product, vendor/sprd/proprietaries/proprietaries-scx35l.mk)
@@ -35,9 +35,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
     frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
-    frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
-    frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
-    frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml \
     frameworks/native/data/etc/com.nxp.mifare.xml:system/etc/permissions/com.nxp.mifare.xml \
     frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
     frameworks/native/data/etc/android.hardware.bluetooth.xml:system/etc/permissions/android.hardware.bluetooth.xml \
@@ -71,7 +68,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/gpio-keys.kl:system/usr/keylayout/gpio-keys.kl \
     $(LOCAL_PATH)/keylayout/headset-keyboard.kl:system/usr/keylayout/headset-keyboard.kl \
     $(LOCAL_PATH)/keylayout/sci-keypad.kl:system/usr/keylayout/sci-keypad.kl \
-    $(LOCAL_PATH)/keylayout/sec_touchkey.kl:system/usr/keylayout/sec_touchkey.kl \
     $(LOCAL_PATH)/keylayout/sprd-eic-keys.kl:system/usr/keylayout/sprd-eic-keys.kl \
     $(LOCAL_PATH)/keylayout/sprd-gpio-keys.kl:system/usr/keylayout/sprd-gpio-keys.kl \
     $(LOCAL_PATH)/keylayout/Synaptics_RMI4_TouchPad_Sensor.idc:system/usr/idc/Synaptics_RMI4_TouchPad_Sensor.idc \
@@ -154,21 +150,6 @@ PRODUCT_PACKAGES += \
     service_contexts \
     selinux_version
 
-# NFC
-PRODUCT_PACKAGES += \
-    com.android.nfc_extras \
-    com.nxp.nfc.nq \
-    nfc_nci.nqx.default \
-    NQNfcNci \
-    nqnfcee_access.xml \
-    nqnfcse_access.xml \
-    Tag
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/nfc/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
-    $(LOCAL_PATH)/configs/nfc/libnfc-nxp.conf:system/etc/libnfc-nxp.conf \
-    $(LOCAL_PATH)/configs/nfc/nfcee_access.xml:system/etc/nfcee_access.xml
-
 # WPA supplicant
 PRODUCT_PACKAGES += \
     dhcpcd.conf \
@@ -198,8 +179,8 @@ PRODUCT_PACKAGES += \
     init.board.rc \
     init.recovery.board.rc \
     init.cali.rc \
-    init.j3xnlte.rc \
-    init.j3xnlte_base.rc \
+    init.j1minilte.rc \
+    init.j1minilte_base.rc \
     init.rilchip.rc \
     init.rilcommon.rc \
     init.sc8830.rc \
@@ -341,7 +322,6 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
     persist.radio.apm_sim_not_pwdn=1 \
     persist.radio.add_power_save=1 \
     rild.libpath=/system/lib/libsec-ril.so \
-    rild.libpath2=/system/lib/libsec-ril-dsds.so \
     persist.security.ams.enforcing=1
 
 # We have enough storage space to hold precise GC data
@@ -349,13 +329,4 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 
 # Dalvik heap config
 $(call inherit-product, frameworks/native/build/phone-xhdpi-1024-dalvik-heap.mk)
-
-# Prebuilt kernel
-ifeq ($(TARGET_PREBUILT_KERNEL),)
-    LOCAL_KERNEL := device/samsung/j3xnlte/kernel
-else
-    LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-    PRODUCT_COPY_FILES += \
-        $(LOCAL_KERNEL):kernel
-endif
 
