@@ -252,10 +252,10 @@ endif
 
 # SELinux
 BOARD_SEPOLICY_DIRS += \
-    device/samsung/j3xnlte/sepolicy
+    device/samsung/j1minilte/sepolicy
 
 # build.prop
-TARGET_SYSTEM_PROP := device/samsung/j3xnlte/system.prop
+TARGET_SYSTEM_PROP := device/samsung/j1minilte/system.prop
 
 #######################################################
 # TWRP
@@ -272,7 +272,6 @@ TW_DEFAULT_BRIGHTNESS := 162
 RECOVERY_SDCARD_ON_DATA := true
 
 # Keys
-BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/j3xnlte/recovery/recovery_keys.c
 BOARD_HAS_NO_SELECT_BUTTON := true
 
 # Crypto.
@@ -291,6 +290,6 @@ BOARD_RECOVERY_SWIPE := true
 
 # twrp recovery fstab
 ifeq ($(RECOVERY_VARIANT), twrp)
-PRODUCT_COPY_FILES += device/samsung/j3xnlte/twrp.fstab:recovery/root/etc/twrp.fstab
+PRODUCT_COPY_FILES += device/samsung/j1minilte/twrp.fstab:recovery/root/etc/twrp.fstab
 endif
 
