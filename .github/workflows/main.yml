@@ -33,7 +33,7 @@ jobs:
         python3 ~/.bin/repo init --depth=1 -u https://github.com/LineageOS/android.git -b cm-13.0
         git clone https://github.com/NotNoelChannel/android_device_samsung_j1minilte.git -b cm-13.0 ~/TWRP/device/samsung/j1minilte
         git clone https://github.com/NotNoelChannel/android_kernel_samsung_j1minilte -b android-6.0 ~/TWRP/kernel/samsung/j1minilte        
-        git clone --depth 1 --branch android-6.0.1_r37 --single-branch https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8 /opt/toolchains/arm-eabi-4.8/
+        git clone --depth 1 --branch android-6.0.1_r32 --single-branch https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-eabi-4.8 /opt/toolchains/arm-eabi-4.8/
         python3 ~/.bin/repo sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all)
     - name: Building TWRP
       run: |
