@@ -98,8 +98,7 @@ lib/libsimageis_jni.so
 lib/libwrappergps.so
 lib/libaccauthentication_jni.so
 lib/libaf_running.so
-lib/libAl_Awb.so
-lib/libAl_Awb_Sp.so
+lib/libAl_Awb_v1.so
 lib/libboost.so
 
 lib/libbt-codec_aptx.so
@@ -113,13 +112,10 @@ lib/libvariablespeed.so
 lib/libvtmanager.so
 lib/libvtstack.so
 lib/libengmode.so
-lib/libmorpho_easy_hdr.so
 lib/libril.so
 lib/libreference-ril.so
 
 # vendor
-vendor/firmware/libpn548ad_fw.so
-vendor/firmware/vbc_eq
 vendor/media/LMspeed_508.emd
 vendor/media/PFFprec_600.emd
 
