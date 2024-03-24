@@ -9,7 +9,3 @@ PRODUCT_BRAND := samsung
 PRODUCT_MANUFACTURER := samsung
 
 PRODUCT_GMS_CLIENTID_BASE := android-samsung
-
-# Camera
-PRODUCT_PACKAGES += \
-    Snap
