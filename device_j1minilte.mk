@@ -1,4 +1,3 @@
-
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 $(call inherit-product, device/samsung/j1minilte/device.mk)
@@ -14,4 +13,3 @@ PRODUCT_GMS_CLIENTID_BASE := android-samsung
 # Camera
 PRODUCT_PACKAGES += \
     Snap
-
