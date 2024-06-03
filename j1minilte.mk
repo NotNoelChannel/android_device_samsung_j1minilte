@@ -1,6 +1,6 @@
 #
 # Copyright (C) 2016 The CyanogenMod Project
-# Copyright (C) 2017 The LineageOS Project
+# Copyright (C) 2018 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,9 +15,10 @@
 # limitations under the License.
 #
 
-# inherit from samsung sharkls-common
--include device/samsung/sharkls-common/BoardConfigCommon.mk
+LOCAL_PATH := device/samsung/j1minilte
 
-# kernel
-TARGET_KERNEL_CONFIG := j1minilte_defconfig
+# Get non-open-source specific aspects
+$(call inherit-product-if-exists, vendor/samsung/j1minilte/j1minilte-vendor.mk)
 
+# Inherit from sharkls-common
+$(call inherit-product, device/samsung/sharkls-common/sharkls.mk)
