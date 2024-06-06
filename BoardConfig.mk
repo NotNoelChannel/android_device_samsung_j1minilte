@@ -19,5 +19,5 @@
 -include device/samsung/sharkls-common/BoardConfigCommon.mk
 
 # kernel
-TARGET_KERNEL_CONFIG := j3xnlte_defconfig
+TARGET_KERNEL_CONFIG := j1minilte_defconfig
 
